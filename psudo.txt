@@ -1,26 +1,27 @@
 main
-make  file named data to open 
+make  file named data to open // or a arraylist 
 and pass a copy to each thread 
-
+				make a lock that only one thread can use data at a time 
 1st thread t1
-
+ for(int i =0; i< size ;i++ )
 
   loop through data 
- needs to cound the number of crimes that arenot crime notacrime nAC after the 6th , 
+ needs to cound the number of crimes that arenot crime notacrime nAC after the 6th , ie group 6 
 and other and oth
 tC=69501- ( nAC + oth)
+and pass this to threads 2-8
 
 thread 2 needs to count the # of IDENTITY THEFT(idT)
-t2
 
 loop through data and inc idT everytime after the 7th , IDENTITY 
 idTP= tc / idT by the number of crimes 
+print idTP
 
 thread 3 needs to count the number of of Crime Against Society (CaS)
 and Crime Against Property (CaPr)
 and Crime Against Person  (CaPe)
 
-loop through and after , number 6 and 
+loop through data and after , number 6 and 
 if it has a So CaS++
 else if it has a Pt CaPr++
 else if it has a Pa CaP
@@ -28,7 +29,7 @@ and divide them by the tC
 
 thread 4  needs to add up the number of drug crimes dC by checking the after the 7th , for the the string to start with Drug
 
-loop through 
+
 thread 4 needs to do the check after the 7th , to start with D and 
-loop through data 
+loop through data and inc drug c 
 
