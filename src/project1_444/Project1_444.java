@@ -25,9 +25,13 @@ public class Project1_444 {
     
     static BufferedReader can = null;
     static File data ;
-    
+    String name;
+    static ArrayList<String> crimes;
+    public Project1_444(String name){
+         this.name=name;
+    }
     public static void main(String[] args) throws FileNotFoundException {
-        ArrayList<String> crimes = new ArrayList<>();
+        crimes = new ArrayList<>();
        //String line = null;
         int i=0;
      data = new File("../Crime.csv");
@@ -48,12 +52,12 @@ public class Project1_444 {
         }
     
     Thread t1=new Thread(new T1(crimes));
-     t1.run();
-
-
+    t1.run();
+    Thread t2=new Thread(new T2());
+ //   t2.run();
     }
-    public  synchronized void accessData(){
-    
+    public  synchronized ArrayList accessData(){
+    return crimes;
 }
 
 }

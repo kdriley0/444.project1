@@ -92,12 +92,13 @@ public class T1 implements Runnable {
               
                }
                 if(!dataGroups[7].isEmpty()){
-                    if(dataGroups[7].contains("DRUG")){
+                    if(dataGroups[7].contains("Drug")){
                   drugC++;
+                  //System.out.println(drugC);
                    }
               }
                 if(!dataGroups[7].isEmpty()){
-                    if(dataGroups[7].contains("DRUG")&&dataGroups[8].contains("MAR")){
+                    if(dataGroups[7].contains("Drug")&&dataGroups[8].contains("MAR")){
                         mj++;
                     }
                 }
@@ -109,20 +110,22 @@ public class T1 implements Runnable {
                     }
                 }
                  if(!dataGroups[7].isEmpty()){
-                    if(dataGroups[7].contains("DRUG")&&dataGroups[8].contains("HER")){
+                    if(dataGroups[7].contains("Drug")&&dataGroups[8].contains("HER")){
                         her++;
                     }
                   }
                   if(!dataGroups[7].isEmpty()){
                     if(dataGroups[7].contains("Drug")&&dataGroups[8].contains("H")){
 
-                        co++;
+                        //co++;
                     }
                 }
-                 if(dataGroups[6].contains("PER")&&dataGroups[8].contains("RAPE")){
+                 if(dataGroups[6].contains("Pe  ")&&dataGroups[8].contains("RAPE")){
                       rape++;
+                      //
+                      
                  }
-               
+             //  System.out.println(dataGroups[8]);
               
                
               
