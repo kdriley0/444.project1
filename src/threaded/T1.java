@@ -120,7 +120,7 @@ public class T1 implements Runnable {
                         //co++;
                     }
                 }
-                 if(dataGroups[6].contains("Pe  ")&&dataGroups[8].contains("RAPE")){
+                 if(dataGroups[6].contains("Pe")&&dataGroups[8].contains("RAPE")){
                       rape++;
                       //
                       
