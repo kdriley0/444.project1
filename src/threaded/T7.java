@@ -8,18 +8,19 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
-import static threaded.T2.size;
-import static threaded.T5.drugC;
+
 /**
  *
  * @author kevin
  */
 public class T7 implements Runnable {
 
-  
+     T2 t2 = new T2();
+         T5 t5 = new T5();
+        int size = t2.getSize();
 
     public void run() {
-        Project1_444 p1 = new Project1_444("t3");
+        Project1_444 p1 = new Project1_444("t8");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
         ArrayList<String> data = p1.accessData();
@@ -41,6 +42,7 @@ public class T7 implements Runnable {
                     }
                 }
         }
+        double drugC= t5.getDrugC();
         perCo=co/drugC*100;
         System.out.println("the percent of COCAINE  = "+ df.format(perCo));
     }

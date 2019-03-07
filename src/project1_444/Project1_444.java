@@ -19,9 +19,12 @@ import threaded.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *
- * @author Kevin Riley on 2/13/19 
+ * @author Kevin Riley for 444 Professor Rinard Spring 18 started on 2/13/19 
+ * 
  * to go through a database and have 8 threads each do something for distributed computing aka class 444 
+ * my driver class this class opens the file and stores it in an arraylist 
+ * then has a synchronized  method so that the all of the threads can access it 
+ * 
  */
 public class Project1_444 {
     
@@ -54,8 +57,10 @@ public class Project1_444 {
         ex.printStackTrace();
         }
     
-    Thread t1=new Thread(new T1(crimes));
+    Thread t1=new Thread(new T1(crimes));// my first attempt when I thought you wanted us to have one thread doing everything 
     //t1.run();
+    
+    //run the threads
     Thread t2=new Thread(new T2());
     t2.run();
      Thread t3=new Thread(new T3());
@@ -71,6 +76,10 @@ public class Project1_444 {
     
     Thread t7=new Thread(new T7());
     t7.run();
+    Thread t8=new Thread(new T8());
+    t8.run();
+    Thread t9=new Thread(new T9());
+    t9.run();
     
     
     }
@@ -79,6 +88,7 @@ public class Project1_444 {
 }
 
 }
+// my attempt to use lock 
 class shared{
     private volatile ArrayList<String> crime;
     private final Lock lock;

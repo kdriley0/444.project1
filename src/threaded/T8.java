@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import project1_444.Project1_444;
 
 
+
 /**
  *
  * @author kevin
  */
-public class T6 implements Runnable {
+public class T8 implements Runnable {
 
          T2 t2 = new T2();
          T5 t5 = new T5();
@@ -27,7 +28,7 @@ public class T6 implements Runnable {
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
-        double mj = 0;
+        double her = 0;
 
         double perID = 0, perCAPe = 0, perCAS = 0, perCAPr = 0, perD = 0, perMj = 0, perCo = 0, perHe = 0, perRape = 0;
         for (int i = 0; i < size; i++) {
@@ -37,15 +38,15 @@ public class T6 implements Runnable {
             if (dataGroups[6].isEmpty()) {
                 dataGroups[6] = "N";
             }
-            if (!dataGroups[7].isEmpty()) {
-                if (dataGroups[7].contains("Drug") && dataGroups[8].contains("MAR")) {
-                    mj++;
-                }
-            }
+             if(!dataGroups[7].isEmpty()){
+                    if(dataGroups[7].contains("Drug")&&dataGroups[8].contains("HER")){
+                        her++;
+                    }
+             }
            
         }
         double drugC= t5.getDrugC();
-        perMj=mj/drugC*100;
-        System.out.println("the percent of maryj  = "+ df.format(perMj));
+        perHe=her/drugC*100;
+        System.out.println("the percent of herion  = "+ df.format(perHe));
     }
 }

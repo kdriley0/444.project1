@@ -17,8 +17,11 @@ import java.util.logging.Logger;
 import java.text.*;
 
 /**
+ * @author Kevin Riley for 444 Professor Rinard Spring 18 started on 2/13/19
  *
- * @author kevin T1 goes through every one of the 8 things and answers them
+ * T1 goes through every one of the 8 things and answers them
+ * 
+ *                      not required 
  */
 public class T1 implements Runnable {
    

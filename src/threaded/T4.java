@@ -8,14 +8,24 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
-import static threaded.T2.tC;
+
 /**
+ *@author Kevin Riley for 444 Professor Rinard Spring 18 started on 2/13/19
  *
- * @author kevin
+ * get the size from thread 2 and total number of crimes(tC) from thread 2
+ * 
+ * thread 3 counts the number and percentage of Crime Against Society (CaS)
+ * and Crime Against Property (CaPr)
+ * and Crime Against Person  (CaPe)
+ * has a synchronized method to return the the Crime Against Person
+ * 
+ * Calculates and prints out the percent of Crime Against Society, Crime Against Property, and  Crime Against Person
+ * 
  */
 public class T4 implements Runnable {
-
-    static final int size = 69501;
+    T2 t2 = new T2();
+    int size=t2.getSize();
+  static double CaS=0, CaPr=0, CaP=0;
 
     public void run() {
         Project1_444 p1 = new Project1_444("t3");
@@ -25,8 +35,8 @@ public class T4 implements Runnable {
         String[] dataGroups = new String[26];
         char firstC = 'x';
         int idT = 0;
-         double CaS=0, CaPr=0, CaP=0;
-        double perID = 0, perCAPe = 0, perCAS = 0, perCAPr = 0, perD = 0, perMj = 0, perCo = 0, perHe = 0, perRape = 0;
+      
+        double  perCAPe = 0, perCAS = 0, perCAPr = 0;
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -48,6 +58,7 @@ public class T4 implements Runnable {
                }
 
         }
+        double tC=t2.getTc();
              perCAPe=CaP/tC*100;
              perCAS=CaS/tC*100;
              perCAPr=CaPr/tC*100;
@@ -57,5 +68,12 @@ public class T4 implements Runnable {
              System.out.println("the percent of crime against society= "+ df.format(perCAS));
 
     }
+       public synchronized double getCap() {
+        return CaP;
+    }
+       public synchronized double getCas() {
+        return CaS;
+    }
+
 
 }
