@@ -11,24 +11,36 @@ import project1_444.Project1_444;
 
 /**
  *
- * @author kevin
+ * @author Kevin Riley for 444 Professor Rinard Spring 18
+ *
+ * Thread 6 counts the amount of cocaine and calculates the % of cocaine
+ * compared to the other drugs
  */
 public class T7 implements Runnable {
 
-     T2 t2 = new T2();
-         T5 t5 = new T5();
-        int size = t2.getSize();
+    T2 t2 = new T2("t6");
+    T5 t5 = new T5("t6");
+    
+    String name;
+
+    public T7(String n) {
+        name = n;
+    }
 
     public void run() {
-        Project1_444 p1 = new Project1_444("t8");
+        Project1_444 p1 = new Project1_444("t6");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
         double co = 0;
 
-        double perID = 0, perCAPe = 0, perCAS = 0, perCAPr = 0, perD = 0, perMj = 0, perCo = 0, perHe = 0, perRape = 0;
+        double perCo = 0;
+        System.out.println(this .name +" has requested size");
+        int size = t2.getSize();
+        System.out.println(this .name +" has requested the drug count");
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -36,15 +48,15 @@ public class T7 implements Runnable {
             if (dataGroups[6].isEmpty()) {
                 dataGroups[6] = "N";
             }
-           if(!dataGroups[7].isEmpty()){
-                    if(dataGroups[7].contains("Drug")&&dataGroups[8].contains("CO")){
-                        co++;
-                    }
+            if (!dataGroups[7].isEmpty()) {
+                if (dataGroups[7].contains("Drug") && dataGroups[8].contains("CO")) {
+                    co++;
                 }
+            }
         }
-        double drugC= t5.getDrugC();
-        perCo=co/drugC*100;
-        System.out.println("the percent of COCAINE  = "+ df.format(perCo));
+        
+        double drugC = t5.getDrugC();
+        perCo = co / drugC * 100;
+        System.out.println("the percent of cocaine  = " + df.format(perCo));
     }
 }
-

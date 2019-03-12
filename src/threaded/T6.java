@@ -9,27 +9,38 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
 
-
 /**
  *
- * @author kevin
+ * @author Kevin Riley for 444 Professor Rinard Spring 18
+ *
+ * Thread 5 counts the amount of marijuana and calculates the % of marijuana
+ * compared to the other drugs
  */
 public class T6 implements Runnable {
 
-         T2 t2 = new T2();
-         T5 t5 = new T5();
-        int size = t2.getSize();
+    T2 t2 = new T2("t5");
+    T5 t5 = new T5("t5");
+   
+    String name;
+
+    public T6(String n) {
+        name = n;
+    }
 
     public void run() {
-        Project1_444 p1 = new Project1_444("t3");
+        Project1_444 p1 = new Project1_444("t5");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
         double mj = 0;
-
-        double perID = 0, perCAPe = 0, perCAS = 0, perCAPr = 0, perD = 0, perMj = 0, perCo = 0, perHe = 0, perRape = 0;
+    
+        double perMj = 0;
+        System.out.println(this .name +" has requested size");
+        int size = t2.getSize();
+        System.out.println(this .name +" has requested the drug count");
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -42,10 +53,10 @@ public class T6 implements Runnable {
                     mj++;
                 }
             }
-           
+
         }
-        double drugC= t5.getDrugC();
-        perMj=mj/drugC*100;
-        System.out.println("the percent of maryj  = "+ df.format(perMj));
+        double drugC = t5.getDrugC();
+        perMj = mj / drugC * 100;
+        System.out.println("The percent of marijuana  = " + df.format(perMj));
     }
 }

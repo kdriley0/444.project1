@@ -21,7 +21,7 @@ import java.text.*;
  *
  * T1 goes through every one of the 8 things and answers them
  * 
- *                      not required 
+ *      ***********************************************************NOT REQUIRED********************************************
  */
 public class T1 implements Runnable {
    
@@ -34,6 +34,7 @@ public class T1 implements Runnable {
     public T1(ArrayList data){
         this.data=data;
     }
+    static double tC= 69501, nAC=0, oth=0,idT=0, CaS=0, CaPr=0, CaP=0, drugC=0,mj=0, co=0, her=0, rape=0  ;
     static{
         try{
   //           scan = new BufferedReader(new FileReader(data));
@@ -46,7 +47,7 @@ public class T1 implements Runnable {
       boolean loop=true;
       String line = null;
       int i =0;
-         double tC= 69501, nAC=0, oth=0,idT=0, CaS=0, CaPr=0, CaP=0, drugC=0,mj=0, co=0, her=0, rape=0  ;
+         
       
       double perO =0, perNAC, perID=0,perCAPe=0,perCAS=0,perCAPr=0, perD=0, perMj=0, perCo=0,perHe=0, perRape=0;
       char firstC= 'x';
@@ -174,10 +175,16 @@ public class T1 implements Runnable {
           } catch (Exception ex) {
              ex.printStackTrace();
           }
-      }
+      }//end while
       
    
+}//end run
+  
+public synchronized double getOther(){
+    return oth;
 }
+
+
 
   
 }

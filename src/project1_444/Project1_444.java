@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.concurrent.locks.Condition;
 import threaded.*;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -32,9 +33,16 @@ public class Project1_444 {
     static File data ;
     static final int size=69501;
     String name;
+    Lock lock;
     public static ArrayList<String> crimes;
     public Project1_444(String name){
          this.name=name;
+    }
+      public String toString(){
+       String out ="";
+        
+       out+= this.name;
+        return out;
     }
     public static void main(String[] args) throws FileNotFoundException {
         crimes = new ArrayList<>();
@@ -56,47 +64,73 @@ public class Project1_444 {
         catch (Exception  ex) {
         ex.printStackTrace();
         }
+        
     
-    Thread t1=new Thread(new T1(crimes));// my first attempt when I thought you wanted us to have one thread doing everything 
+   // Thread t1=new Thread(new T1(crimes));// my first attempt when I thought you wanted us to have one thread doing everything 
     //t1.run();
     
     //run the threads
-    Thread t2=new Thread(new T2());
+    Thread t2=new Thread(new T2("t1"));
     t2.run();
-     Thread t3=new Thread(new T3());
+     Thread t3=new Thread(new T3("t2"));
     t3.run();
-    Thread t4=new Thread(new T4());
+    Thread t4=new Thread(new T4("t3"));
     t4.run();
-    Thread t5=new Thread(new T5());
+    Thread t5=new Thread(new T5("t4"));
     t5.run();
     
-    Thread t6=new Thread(new T6());
+    Thread t6=new Thread(new T6("t5"));
     t6.run();
     
     
-    Thread t7=new Thread(new T7());
+    Thread t7=new Thread(new T7("t6"));
     t7.run();
-    Thread t8=new Thread(new T8());
+    Thread t8=new Thread(new T8("t7"));
     t8.run();
-    Thread t9=new Thread(new T9());
+    Thread t9=new Thread(new T9("t8"));
     t9.run();
     
     
     }
     public  synchronized ArrayList accessData(){
+      System.out.println(  this.name + " has the data");
     return crimes;
 }
 
 }
 // my attempt to use lock 
-class shared{
+class Shared{
     private volatile ArrayList<String> crime;
-    private final Lock lock;
     private volatile boolean aval;
-    shared(){
-        aval=false;
-        lock = new ReentrantLock();
-    }
+    private final Lock lock;
+    private final Condition cond;
     
+    Shared(){
+        crime=this.crime;
+        aval=false;
+        lock = new ReentrantLock(); 
+        cond=lock.newCondition();
+    }
+    Lock getLock(){
+        return lock;
+    }
+    ArrayList getSharedData(){
+        lock.lock();
+        try{
+            while(!aval){
+                try{
+                    cond.await();
+                }catch(InterruptedException ie){
+                    ie.printStackTrace();
+                }
+                aval=false;
+                cond.signal();
+            }
+        }finally{
+            lock.unlock();
+            return crime;
+        }
+    }
+  
     
 }

@@ -22,21 +22,31 @@ import project1_444.Project1_444;
  * 
  */
 public class T5 implements Runnable {
-    T2 t2 = new T2();
-    int size = t2.getSize();
-    T4 t4 = new T4();
+    T2 t2 = new T2("t4");
     
+    T4 t4 = new T4("t4");
+     String name;
+
+    public T5(String n) {
+        name=n;
+    }
     static  double drugC=0;
     public void run() {
-        Project1_444 p1 = new Project1_444("t3");
+        
+        
+        Project1_444 p1 = new Project1_444("t4");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
         double mj = 0;
        
-        double  perD = 0, perDrug;
+        double  perD = 0, perDrug=0;
+               
+        System.out.println(this .name +" has requested size");
+        int size = t2.getSize();
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -62,6 +72,7 @@ public class T5 implements Runnable {
 
     }//end run
     public synchronized double getDrugC() {
+        System.out.println(  this.name + " has the drug count");
         return drugC;
     }
 

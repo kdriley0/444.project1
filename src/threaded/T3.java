@@ -22,14 +22,23 @@ import project1_444.Project1_444;
  * Calculates and prints out the percent of identity theft
  */
 public class T3 implements Runnable {
-    T2 t2 = new T2();
-    int size = t2.getSize();
+    T2 t2 = new T2("t2");
+    
+     String name;
+
+    public T3(String n) {
+        name = n;
+    }
    
 
     public void run() {
-         Project1_444 p1 = new Project1_444("t3");
+        System.out.println("Thread 2 has requested size");
+        int size = t2.getSize();
+        
+         Project1_444 p1 = new Project1_444("t2");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';

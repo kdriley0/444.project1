@@ -23,14 +23,22 @@ import project1_444.Project1_444;
  * 
  */
 public class T4 implements Runnable {
-    T2 t2 = new T2();
-    int size=t2.getSize();
-  static double CaS=0, CaPr=0, CaP=0;
+    T2 t2 = new T2("t3");
+    
+    static int i=0;
+    static double CaS = 0, CaPr = 0, CaP = 0;
+    String name;
 
+    public T4(String n) {
+        name=n;
+    }
     public void run() {
+        System.out.println(this .name +" has requested size");
+        int size = t2.getSize();
         Project1_444 p1 = new Project1_444("t3");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
@@ -69,9 +77,15 @@ public class T4 implements Runnable {
 
     }
        public synchronized double getCap() {
+           System.out.println(  this.name + " has the crime against persons");
         return CaP;
     }
        public synchronized double getCas() {
+           if(i==0){
+               System.out.println(  this.name + " has the crime against society");
+               i++;
+           }
+            
         return CaS;
     }
 

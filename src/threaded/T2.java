@@ -23,22 +23,29 @@ import static project1_444.Project1_444.crimes;
  */
 public class T2 implements Runnable {
 
+    static int i=0;
     static final int size = 69501;
     static double tC = 69501, nAC = 0, oth = 0;
-
+    String name="";
+    public T2(String n){
+        name=n;
+    }
     public synchronized int getSize()
     {
+        System.out.println(  this.name + " has the size");
         return size;
     }
 
     public void run() {
-        Project1_444 p1 = new Project1_444("t2");
+        Project1_444 p1 = new Project1_444("t1");
+       
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        System.out.println(this .name +" has requested data");
         ArrayList<String> data = p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
-        double perO = 0, perNAC, perID = 0, perCAPe = 0, perCAS = 0, perCAPr = 0, perD = 0, perMj = 0, perCo = 0, perHe = 0, perRape = 0;
+        double perO = 0, perNAC, perID = 0;
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -66,6 +73,11 @@ public class T2 implements Runnable {
     }
 
     public synchronized double getTc() {
+        if(i<3){
+              System.out.println(this .name +" has the total crime");
+              i++;
+        }
+      
         return tC;
     }
 
