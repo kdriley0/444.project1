@@ -8,6 +8,7 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
+import static threaded.T2.data;
 
 /**
  *
@@ -28,16 +29,19 @@ public class T9 implements Runnable {
     }
 
     public void run() {
+        
+        
         Project1_444 p1 = new Project1_444("t8");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        int rape = 0;
+        double perRape = 0;
         System.out.println(this .name +" has requested data");
-        ArrayList<String> data = p1.accessData();
+         synchronized (this) {
+        
         String[] dataGroups = new String[26];
         char firstC = 'x';
-        int rape = 0;
-
-        double perRape = 0;
+        
         System.out.println(this .name +" has requested size");
         int size = t2.getSize();
         System.out.println(this .name +" has requested the crime against person");
@@ -53,7 +57,8 @@ public class T9 implements Runnable {
                 //
 
             }
-        }
+        }//end for
+         }//end sync
         double CaP = t4.getCap();
         perRape = rape / CaP * 100;
 

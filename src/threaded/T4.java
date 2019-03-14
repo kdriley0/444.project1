@@ -8,6 +8,7 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
+import static threaded.T2.data;
 
 /**
  *@author Kevin Riley for 444 Professor Rinard Spring 18 started on 2/13/19
@@ -24,7 +25,7 @@ import project1_444.Project1_444;
  */
 public class T4 implements Runnable {
     T2 t2 = new T2("t3");
-    
+     static int k=0;
     static int i=0;
     static double CaS = 0, CaPr = 0, CaP = 0;
     String name;
@@ -33,18 +34,24 @@ public class T4 implements Runnable {
         name=n;
     }
     public void run() {
+        
+        double  perCAPe = 0, perCAS = 0, perCAPr = 0;
+        
+        
         System.out.println(this .name +" has requested size");
         int size = t2.getSize();
         Project1_444 p1 = new Project1_444("t3");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
         System.out.println(this .name +" has requested data");
-        ArrayList<String> data = p1.accessData();
+        
+         synchronized (this) {
+      // data=p1.accessData();
         String[] dataGroups = new String[26];
         char firstC = 'x';
         int idT = 0;
       
-        double  perCAPe = 0, perCAS = 0, perCAPr = 0;
+        
         for (int i = 0; i < size; i++) {
 
             line = data.get(i).toString();
@@ -65,7 +72,12 @@ public class T4 implements Runnable {
               
                }
 
-        }
+        } 
+         }
+        if(k ==0){//to prevent it from spaming the console
+                  System.out.println(this .name +" has requested total crimes");
+                  k++;
+             }
         double tC=t2.getTc();
              perCAPe=CaP/tC*100;
              perCAS=CaS/tC*100;

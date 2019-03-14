@@ -8,6 +8,7 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
+import static threaded.T2.data;
 
 /**
  *
@@ -20,7 +21,7 @@ public class T7 implements Runnable {
 
     T2 t2 = new T2("t6");
     T5 t5 = new T5("t6");
-    
+
     String name;
 
     public T7(String n) {
@@ -31,30 +32,33 @@ public class T7 implements Runnable {
         Project1_444 p1 = new Project1_444("t6");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
-        System.out.println(this .name +" has requested data");
-        ArrayList<String> data = p1.accessData();
-        String[] dataGroups = new String[26];
-        char firstC = 'x';
+      
         double co = 0;
-
         double perCo = 0;
-        System.out.println(this .name +" has requested size");
-        int size = t2.getSize();
-        System.out.println(this .name +" has requested the drug count");
-        for (int i = 0; i < size; i++) {
+        System.out.println(this.name + " has requested data");
+        synchronized (this) {
+           
+            String[] dataGroups = new String[26];
+            char firstC = 'x';
 
-            line = data.get(i).toString();
-            dataGroups = line.split(",");
-            if (dataGroups[6].isEmpty()) {
-                dataGroups[6] = "N";
-            }
-            if (!dataGroups[7].isEmpty()) {
-                if (dataGroups[7].contains("Drug") && dataGroups[8].contains("CO")) {
-                    co++;
+            System.out.println(this.name + " has requested size");
+            int size = t2.getSize();
+            System.out.println(this.name + " has requested the drug count");
+            for (int i = 0; i < size; i++) {
+
+                line = data.get(i).toString();
+                dataGroups = line.split(",");
+                if (dataGroups[6].isEmpty()) {
+                    dataGroups[6] = "N";
+                }
+                if (!dataGroups[7].isEmpty()) {
+                    if (dataGroups[7].contains("Drug") && dataGroups[8].contains("CO")) {
+                        co++;
+                    }
                 }
             }
         }
-        
+        System.out.println(this .name +" has requested drug count");
         double drugC = t5.getDrugC();
         perCo = co / drugC * 100;
         System.out.println("the percent of cocaine  = " + df.format(perCo));

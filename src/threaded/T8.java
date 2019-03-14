@@ -8,6 +8,7 @@ package threaded;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import project1_444.Project1_444;
+import static threaded.T2.data;
 
 
 
@@ -32,13 +33,15 @@ public class T8 implements Runnable {
         Project1_444 p1 = new Project1_444("t7");
         DecimalFormat df = new DecimalFormat("0.00");
         String line = null;
+        double her = 0;
+        double  perHe = 0;
+        
         System.out.println(this .name +" has requested data");
-        ArrayList<String> data = p1.accessData();
+         synchronized (this) {
+         
         String[] dataGroups = new String[26];
         char firstC = 'x';
-        double her = 0;
-
-        double  perHe = 0;
+        
         System.out.println(this .name +" has requested size");
         int size = t2.getSize();
         System.out.println(this .name +" has requested  the drug count");
@@ -56,6 +59,7 @@ public class T8 implements Runnable {
              }
            
         }
+         }
         double drugC= t5.getDrugC();
         perHe=her/drugC*100;
         System.out.println("the percent of herion  = "+ df.format(perHe));
